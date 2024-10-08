@@ -22,23 +22,6 @@ GLfloat colors[] = {
     0.0f, 0.0f, 1.0f
 };
 
-const char* vertex_shader =
-"#version 460\n"
-"layout(location = 0) attribute vec3 vertex_position;\n"
-"layout(location = 1) attribute vec3 vertex_color;\n"
-"out vec3 color;\n"
-"void main() {\n"
-"   color = vertex_color;\n"
-"   gl_Position = vec4(vertex_position, 1.0f);\n"
-"}\0";
-
-const char* fragment_shader =
-"#version 460\n"
-"in vec3 color;\n"
-"out vec4 frag_color;\n"
-"void main() {\n"
-"   frag_color = vec4(color, 1.0f);\n"
-"}\0";
 
 int g_windowSizeX = 640;
 int g_windowSizeY = 480;
@@ -105,6 +88,8 @@ int main(int argc, char** argv)
             std::cerr << "Can't create shader program: " << "DefaultShader" << std::endl;
             return -1;
         }
+
+        resourceManager.loadTexture("DefaultTexture", "res/Textures/map_16x16.png");
 
         GLuint points_vbo = 0;
         glGenBuffers(1, &points_vbo);
